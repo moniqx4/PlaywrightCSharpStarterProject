@@ -18,6 +18,7 @@ namespace PlaywrightStarterConsoleApp.Configuration
         Headless = false,
       });
       var pageObject = new LoginPage(browser);
+
       container.RegisterInstanceAs(playwright);
       container.RegisterInstanceAs(browser);
       container.RegisterInstanceAs(pageObject);

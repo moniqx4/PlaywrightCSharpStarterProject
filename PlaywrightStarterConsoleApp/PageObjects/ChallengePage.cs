@@ -1,12 +1,14 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightStarterConsoleApp.Common.Constants;
 using PlaywrightStarterConsoleApp.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace PlaywrightStarterConsoleApp.PageObjects
 {
   public class ChallengePage : BasePageObject
   {
-    public override string PagePath => "";
+    public override string PagePath => PagePaths.BaseUrl + "";
 
     public ChallengePage(IBrowser browser)
     {
@@ -19,10 +21,18 @@ namespace PlaywrightStarterConsoleApp.PageObjects
 
     public async Task ClickOnSkipButton()
     {
-      await Page.RunAndWaitForNavigationAsync(async () =>
+      try
       {
-        await Page.ClickAsync("");
-      });
+        await Page.RunAndWaitForNavigationAsync(async () =>
+        {
+          await Page.ClickAsync("");
+        });
+      }
+      catch (Exception ex)
+      {
+        await LogTakeScreenshot (ex.Message, "clickskipbutton");        
+        throw;
+      }      
     }
   }
 }

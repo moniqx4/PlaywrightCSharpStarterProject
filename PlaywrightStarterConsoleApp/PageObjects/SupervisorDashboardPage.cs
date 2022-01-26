@@ -1,16 +1,12 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightStarterConsoleApp.Common.Constants;
 using PlaywrightStarterConsoleApp.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PlaywrightStarterConsoleApp.PageObjects
 {
   public class SupervisorDashboardPage : BasePageObject
   {
-    public override string PagePath => "";
+    public override string PagePath => PagePaths.BaseUrl + "";
     public SupervisorDashboardPage(IBrowser browser)
     {
       Browser = browser;

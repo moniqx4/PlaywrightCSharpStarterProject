@@ -1,4 +1,5 @@
-﻿using PlaywrightStarterConsoleApp.PageObjects;
+﻿using FluentAssertions;
+using PlaywrightStarterConsoleApp.PageObjects;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -32,23 +33,22 @@ namespace PlaywrightStarterConsoleApp.Tests
 
     [Given(@"user types in password in password field")]
     public async Task GivenUserTypesInPasswordInPasswordField()
-    {
+    {      
       await _loginPage.FillInPassword("");
     }
-
 
     [When(@"the login button is clicked the challenge page appears")]
     public async Task WhenUserClicksLoginButtonTheChallengePageAppears(string targetUrl)
     {
       await _loginPage.ClickOnLoginButton();
-      //_challengePage.Page.Url.Should().Be(targetUrl);
+      _challengePage.Page.Url.Should().Be(targetUrl);
     }
 
     [Then(@"the user clicks on the skip button and goes to '(.*)'")]
     public async Task ThenUserClicksOnTheSkipButtonAndGoesTo(string targetUrl)
     {
        await _challengePage.ClickOnSkipButton();      
-      //_supervisorDashboardPage.Page.Url.Should().Be(targetUrl);
+      _supervisorDashboardPage.Page.Url.Should().Be(targetUrl);
     }
   }
 }

@@ -1,12 +1,14 @@
 ﻿using Microsoft.Playwright;
+using PlaywrightStarterConsoleApp.Common.Constants;
 using PlaywrightStarterConsoleApp.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace PlaywrightStarterConsoleApp.PageObjects
 {
   public class LoginPage : BasePageObject
   {
-    public override string PagePath => "https://www.google.com/";
+    public override string PagePath => PagePaths.BaseUrl;
 
     public LoginPage(IBrowser browser)
     {
@@ -17,17 +19,46 @@ namespace PlaywrightStarterConsoleApp.PageObjects
 
     public override IBrowser Browser { get; }
 
-    public Task FillInUsername(string username) => Page.FillAsync("", username);
+    public async Task FillInUsername(string username)
+    {
+      try
+      {
+        await Page.FillAsync("", username);
+      }
+      catch (Exception ex)
+      {
+        await LogTakeScreenshot(ex.Message, "fillusername");        
+        throw;
+      }      
+    }
 
-    public Task FillInPassword(string password) => Page.FillAsync("", password);
-
+    public async Task FillInPassword(string password)
+    {
+      try
+      {
+        await Page.FillAsync("", password);
+      }
+      catch (Exception ex)
+      {
+        await LogTakeScreenshot(ex.Message, "fillpassword");       
+        throw;
+      }
+    }
 
     public async Task ClickOnLoginButton()
     {
-      await Page.RunAndWaitForNavigationAsync(async () =>
+      try
       {
-        await Page.ClickAsync("");
-      });
+        await Page.RunAndWaitForNavigationAsync(async () =>
+        {
+          await Page.ClickAsync("");
+        });
+      }
+      catch (Exception ex)
+      {
+        await LogTakeScreenshot(ex.Message, "clickloginbutton");        
+        throw;
+      }      
     }
   }
 }
