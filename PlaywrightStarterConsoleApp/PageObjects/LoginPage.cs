@@ -19,11 +19,24 @@ namespace PlaywrightStarterConsoleApp.PageObjects
 
     public override IBrowser Browser { get; }
 
+    public async Task FillInCompanyAlias(string companyAlias)
+    {
+      try
+      {
+        await Page.FillAsync("", companyAlias); //TODO add locator
+      }
+      catch (Exception ex)
+      {
+        await LogTakeScreenshot(ex.Message, "fillcompanyalias");
+        throw;
+      }
+    }
+
     public async Task FillInUsername(string username)
     {
       try
       {
-        await Page.FillAsync("", username);
+        await Page.FillAsync("", username); //TODO add locator
       }
       catch (Exception ex)
       {
@@ -36,7 +49,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
     {
       try
       {
-        await Page.FillAsync("", password);
+        await Page.FillAsync("", password); //TODO add locator
       }
       catch (Exception ex)
       {
@@ -51,7 +64,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
       {
         await Page.RunAndWaitForNavigationAsync(async () =>
         {
-          await Page.ClickAsync("");
+          await Page.ClickAsync("text=Login");
         });
       }
       catch (Exception ex)

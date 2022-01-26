@@ -4,5 +4,9 @@
   {
     //TODO: add your page paths here
     public static string BaseUrl => "";
+
+    public static string ChallengePagePath => "";
+
+    public static string SupervisorDashboardPagePath => "";
   }
 }

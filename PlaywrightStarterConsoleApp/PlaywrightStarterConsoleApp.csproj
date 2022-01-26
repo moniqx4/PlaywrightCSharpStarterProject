@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Logging\" />
     <Folder Include="Screenshots\" />
   </ItemGroup>
 

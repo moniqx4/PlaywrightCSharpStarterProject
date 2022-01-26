@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using PlaywrightStarterConsoleApp.Common.Constants;
 using PlaywrightStarterConsoleApp.PageObjects;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -25,30 +26,36 @@ namespace PlaywrightStarterConsoleApp.Tests
       await _loginPage.NavigateAsync();
     }
 
+    [Given(@"user types in companyAlias in companyAlias field")]
+    public async Task GivenUserTypesInCompanyAliasInCompanyAliasField()
+    {
+      await _loginPage.FillInCompanyAlias(""); // TODO get this info from a configuration file
+    }
+
     [Given(@"user types in username in username field")]
     public async Task GivenUserTypesInUsernameInUsernameField()
     {
-      await _loginPage.FillInUsername("");
+      await _loginPage.FillInUsername(""); // TODO get this info from a configuration file
     }
 
     [Given(@"user types in password in password field")]
     public async Task GivenUserTypesInPasswordInPasswordField()
     {      
-      await _loginPage.FillInPassword("");
+      await _loginPage.FillInPassword(""); // TODO get this info from a configuration file
     }
 
     [When(@"the login button is clicked the challenge page appears")]
-    public async Task WhenUserClicksLoginButtonTheChallengePageAppears(string targetUrl)
+    public async Task WhenUserClicksLoginButtonTheChallengePageAppears()
     {
       await _loginPage.ClickOnLoginButton();
-      _challengePage.Page.Url.Should().Be(targetUrl);
+      _challengePage.Page.Url.Should().Contain(PagePaths.ChallengePagePath); 
     }
 
     [Then(@"the user clicks on the skip button and goes to '(.*)'")]
-    public async Task ThenUserClicksOnTheSkipButtonAndGoesTo(string targetUrl)
+    public async Task ThenUserClicksOnTheSkipButtonAndGoesTo()
     {
        await _challengePage.ClickOnSkipButton();      
-      _supervisorDashboardPage.Page.Url.Should().Be(targetUrl);
+      _supervisorDashboardPage.Page.Url.Should().Contain(PagePaths.SupervisorDashboardPagePath);
     }
   }
 }

@@ -8,7 +8,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
 {
   public class ChallengePage : BasePageObject
   {
-    public override string PagePath => PagePaths.BaseUrl + "";
+    public override string PagePath => PagePaths.BaseUrl + PagePaths.ChallengePagePath;
 
     public ChallengePage(IBrowser browser)
     {
@@ -25,11 +25,11 @@ namespace PlaywrightStarterConsoleApp.PageObjects
       {
         await Page.RunAndWaitForNavigationAsync(async () =>
         {
-          await Page.ClickAsync("");
+          await Page.ClickAsync("text=Skip");
         });
       }
       catch (Exception ex)
-      {
+      {        
         await LogTakeScreenshot (ex.Message, "clickskipbutton");        
         throw;
       }      
