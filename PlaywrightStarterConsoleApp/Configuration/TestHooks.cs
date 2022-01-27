@@ -1,5 +1,6 @@
 ﻿using BoDi;
 using Microsoft.Playwright;
+using PlaywrightStarterConsoleApp.Common.Logging;
 using PlaywrightStarterConsoleApp.PageObjects;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -18,10 +19,12 @@ namespace PlaywrightStarterConsoleApp.Configuration
         Headless = false,
       });
       var pageObject = new LoginPage(browser);
+      var logger = new LogService();
 
       container.RegisterInstanceAs(playwright);
       container.RegisterInstanceAs(browser);
       container.RegisterInstanceAs(pageObject);
+      container.RegisterInstanceAs(logger);
     }
 
     [AfterScenario]
@@ -30,7 +33,9 @@ namespace PlaywrightStarterConsoleApp.Configuration
       var browser = container.Resolve<IBrowser>();
       await browser.CloseAsync();
       var playwright = container.Resolve<IPlaywright>();
+      var logger = container.Resolve<ILogService>();
       playwright.Dispose();
+      logger.Dispose();
     }
   }
 }

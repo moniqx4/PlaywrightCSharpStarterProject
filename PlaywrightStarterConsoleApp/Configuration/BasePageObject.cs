@@ -1,5 +1,5 @@
 ﻿using Microsoft.Playwright;
-using System;
+using PlaywrightStarterConsoleApp.Common.Logging;
 using System.Threading.Tasks;
 
 namespace PlaywrightStarterConsoleApp.Configuration
@@ -12,6 +12,8 @@ namespace PlaywrightStarterConsoleApp.Configuration
 
     public abstract IBrowser Browser { get; }
 
+    private ILogService Logger { get; }
+
     public async Task NavigateAsync()
     {
       Page = await Browser.NewPageAsync();
@@ -20,7 +22,7 @@ namespace PlaywrightStarterConsoleApp.Configuration
 
     public async Task LogTakeScreenshot(string errorMsg, string screenshotFileName)
     {
-      Console.WriteLine($"{errorMsg}");
+      Logger.LogLevelError($"{errorMsg}");
       await Page.ScreenshotAsync(new PageScreenshotOptions { Path = $"./Screenshots/{screenshotFileName}.png" });
     }
   }
