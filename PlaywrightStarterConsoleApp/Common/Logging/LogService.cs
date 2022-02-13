@@ -12,7 +12,7 @@ namespace PlaywrightStarterConsoleApp.Common.Logging
 {
   public class LogService : ILogService
   {
-    private readonly ILog _logger = LogManager(typeof(LogService));
+    private readonly ILog _logger = LogManager.GetLogger(nameof(LogService));
     private const string _LOG_FILE_TYPE = ".txt";
 
     public DateTime StartTime { get; set; }
