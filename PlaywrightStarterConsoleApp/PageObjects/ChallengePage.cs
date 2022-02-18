@@ -25,7 +25,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
       {
         await Page.RunAndWaitForNavigationAsync(async () =>
         {
-          await Page.ClickAsync("text=Skip");
+          await Page.Locator("text=Skip").ClickAsync();
         });
       }
       catch (Exception ex)

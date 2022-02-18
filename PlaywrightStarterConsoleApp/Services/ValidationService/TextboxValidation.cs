@@ -35,11 +35,12 @@ namespace PlaywrightStarterConsoleApp.Services.ValidationService
       try
       {
 
-        await Page.FillAsync("", companyAlias); //TODO add locator
+        //await Page.FillAsync("", companyAlias); //TODO add locator
+        await EnterTextAsync(LocatorType.BasicSelector, "", companyAlias);
       }
       catch (Exception ex)
       {
-        await LogTakeScreenshot(ex.Message, "fillcompanyalias");
+        await LogTakeScreenshot(ex.Message, "FillCompanyaliasTextbox");
         throw;
       }
     }

@@ -33,15 +33,15 @@ namespace PlaywrightStarterConsoleApp.Tests
     }
 
     [Given(@"user types in username in username field")]
-    public async Task GivenUserTypesInUsernameInUsernameField()
+    public async Task GivenUserTypesInUsernameInUsernameField(string username)
     {
-      await _loginPage.FillInUsername(""); // TODO get this info from a configuration file
+      await _loginPage.FillInUsername(username); // TODO get this info from a configuration file
     }
 
     [Given(@"user types in password in password field")]
-    public async Task GivenUserTypesInPasswordInPasswordField()
+    public async Task GivenUserTypesInPasswordInPasswordField(string password)
     {      
-      await _loginPage.FillInPassword(""); // TODO get this info from a configuration file
+      await _loginPage.FillInPassword(password); // TODO get this info from a configuration file
     }
 
     [When(@"the login button is clicked the challenge page appears")]

@@ -23,7 +23,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
     {
       try
       {
-        await Page.FillAsync("", companyAlias); //TODO add locator
+        await Page.Locator("").FillAsync(companyAlias); //TODO add locator
       }
       catch (Exception ex)
       {
@@ -36,7 +36,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
     {
       try
       {
-        await Page.FillAsync("", username); //TODO add locator
+        await Page.Locator("").FillAsync(username); //TODO add locator
       }
       catch (Exception ex)
       {
@@ -49,7 +49,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
     {
       try
       {
-        await Page.FillAsync("", password); //TODO add locator
+        await Page.Locator("").FillAsync(password); //TODO add locator
       }
       catch (Exception ex)
       {
@@ -64,7 +64,7 @@ namespace PlaywrightStarterConsoleApp.PageObjects
       {
         await Page.RunAndWaitForNavigationAsync(async () =>
         {
-          await Page.ClickAsync("text=Login");
+          await Page.Locator("text=Login").ClickAsync();
         });
       }
       catch (Exception ex)
